@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Log Viewer</title>
+  </head>
+  <body>
+    <h1>real time logs viewer</h1>
+    <div id="log"></div>
+  </body>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    
+    socket.on("message", (message) => {
+      console.log(message);
+      document.getElementById("log").innerHTML += message;
+    });
+
+    socket.on("connect", () => {
+      console.log("connected");
+    })
+  </script>
+</html>
